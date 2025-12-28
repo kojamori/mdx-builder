@@ -1,12 +1,13 @@
-import mdxBuilder from "../src/index.js";
-const mdxUtils = mdxBuilder.utils;
+import MDXBuilder from "../src/index.js";
 
-const builder = new mdxBuilder.builder();
+const { utils, mdxBuilder } = MDXBuilder;
+
+const builder = new mdxBuilder();
 
 builder
   .addHeading("Shopping List", 1)
   .addText(
-    mdxUtils.list(
+    utils.list(
       [
         "Fruits",
         ["Apple", "Banana", "Orange"],

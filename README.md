@@ -19,9 +19,9 @@ npm install mdx-builder
 ```typescript
 import MDXBuilder from "mdx-builder";
 
-const mdxUtils = MDXBuilder.utils;
+const { utils, mdxBuilder } = MDXBuilder;
 
-const builder = new MDXBuilder.builder();
+const builder = new mdxBuilder();
 
 builder
   .addHeading("My Document", 1)

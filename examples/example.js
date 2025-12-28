@@ -1,9 +1,9 @@
-import mdxBuilder from "../src/index.js";
+import MDXBuilder from "../src/index.js";
 
-const mdxUtils = mdxBuilder.utils;
+const { utils, mdxBuilder } = MDXBuilder;
 
 const main = () => {
-  const mdx = new mdxBuilder.builder();
+  const mdx = new mdxBuilder();
   mdx
     .setFrontMatter("title", "My MDX Document")
     .addHeading("Introduction", 1)
@@ -20,7 +20,7 @@ const main = () => {
       false,
       "This is child content."
     )
-    .addText(mdxUtils.admonition("note", "This is an important note.", "Note"));
+    .addText(utils.admonition("note", "This is an important note.", "Note"));
 
   console.log(mdx.build());
 };

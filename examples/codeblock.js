@@ -1,8 +1,6 @@
 import MDXBuilder from "../src/index.js";
 
-const mdxUtils = MDXBuilder.utils;
-
-const builder = new MDXBuilder.builder();
+const { utils, mdxBuilder } = MDXBuilder;
 
 builder
   .addHeading("My Document", 1)
