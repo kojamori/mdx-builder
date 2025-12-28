@@ -1,0 +1,20 @@
+{
+  "name": "@kojamori/mdx-builder",
+  "version": "1.0.0",
+  "description": "A package to provide some tools on procedural generation of MDX documents.",
+  "keywords": [
+    "mdx"
+  ],
+  "license": "GPL-3.0",
+  "author": "Koja Mori",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
