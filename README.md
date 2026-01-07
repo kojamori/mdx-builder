@@ -56,6 +56,10 @@ For now, please refer to the source code in `src/utils.ts` for available utility
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
+## Changelog
+
+Please see [CHANGELOG.md](CHANGELOG.md) for details.
+
 ## License
 
 This project is licensed under the GPL-3.0 License. See the LICENSE file for details.
