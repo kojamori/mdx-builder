@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## [3.1.1] - 2026-01-08
+
+### Documentation
+
+- Fixed README.md example to correctly demonstrate the new `addHeading` method with content parameter.
 
 TBD
 
