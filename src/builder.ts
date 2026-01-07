@@ -15,10 +15,10 @@ class Builder implements types.IMarkdownBuilder {
     return this;
   }
 
-  addHeading(text: string, level: number) {
+  addHeading(text: string, level: number, content: string = "") {
     if (text == "") return this; // skip empty headings
 
-    this.elements.push(makeHeading(text, level));
+    this.elements.push(makeHeading(text, level, content));
     return this;
   }
 

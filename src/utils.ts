@@ -49,8 +49,8 @@ const makeCodeBlock = (code: string, language: string = "", title?: string) => {
     : `\`\`\`${language}\n${code}\n\`\`\`\n`;
 };
 
-const makeHeading = (text: string, level: number) => {
-  return `${"#".repeat(level)} ${text}`;
+const makeHeading = (text: string, level: number, content: string = "") => {
+  return `${"#".repeat(level)} ${text}` + (content ? `\n\n${content}\n` : "");
 };
 
 const newline = () => {
@@ -59,6 +59,10 @@ const newline = () => {
 
 const bold = (text: string) => {
   return `**${text}**`;
+};
+
+const boldColon = (text: string, content: string = "") => {
+  return `**${text}:**` + (content ? ` ${content}` : "");
 };
 
 const italics = (text: string) => {
@@ -82,7 +86,7 @@ const image = (altText: string, url: string) => {
 };
 
 const admonition = (
-  type: types.AdmonitionType,
+  type: string & types.AdmonitionType,
   title: string = "",
   content: string
 ) => {
@@ -155,6 +159,7 @@ export default {
   makeHeading,
   newline,
   bold,
+  boldColon,
   italics,
   underline,
   strikethrough,
