@@ -1,9 +1,3 @@
-import utils from "./utils.js";
-import mdxBuilder from "./builder.js";
-import * as types from "./types.js";
-
-export default {
-  mdxBuilder,
-  utils,
-  types,
-};
+export { default as utils } from "./utils.js";
+export { default as mdxBuilder } from "./builder.js";
+export * as types from "./types.js";
