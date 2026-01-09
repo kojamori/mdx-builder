@@ -17,30 +17,21 @@ npm install mdx-builder
 ## Usage
 
 ```typescript
-import { utils, mdxBuilder } from "mdx-builder";
+import MDXBuilder from "@kojamori/mdx-builder";
 
+const { mdxBuilder, utils } = MDXBuilder;
 const builder = new mdxBuilder();
 
-builder.addHeading(
-  "My Document",
-  1,
-  utils.makeCodeBlock("console.log('Hello, world!');", "javascript", "hello.js")
-);
+builder
+  .addHeading("My Dynamic Document", 1)
+  .addText("This document was generated programmatically.")
+  .addText(
+    utils.makeCodeBlock("console.log('Hello, MDX!');", "javascript", "hello.js")
+  );
 
 const mdxContent = builder.build();
-
 console.log(mdxContent);
 ```
-
-Output:
-
-````markdown
-# My Document
-
-```javascript title="hello.js"
-console.log("Hello, world!");
-```
-````
 
 ## API
 

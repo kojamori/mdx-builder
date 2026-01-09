@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.0.2] - 2026-01-09
+
+### Documentation
+
+- New example in README.md demonstrating more features.
+
 ## [4.0.1] - 2026-01-09
 
 ### Fixed
