@@ -1,5 +1,15 @@
 # Changelog
 
+# [4.0.5] - 2026-01-09
+
+### Documentation
+
+- Added `API.md` with basic documentation for the `Builder` class and `utils` functions, including usage examples and method summaries.
+
+### Internal Changes
+
+Use yaml package to generate frontmatter in `makeFrontMatter` utility function.
+
 ## [4.0.3] - 2026-01-09
 
 ### Fixed

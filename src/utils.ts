@@ -1,12 +1,8 @@
 import * as types from "./types.js";
+import yaml from "yaml";
 
-const makeFrontMatter = (values: Record<string, string>) => {
-  let frontMatter = "---\n";
-  for (const [key, value] of Object.entries(values)) {
-    frontMatter += `${key}: ${value}\n`;
-  }
-  frontMatter += "---\n";
-  return frontMatter;
+const makeFrontMatter = (values: Record<string, any>) => {
+  return `---\n${yaml.stringify(values)}---\n\n`;
 };
 
 const makeTableHTML = (headers: string[], rows: string[][]) => {

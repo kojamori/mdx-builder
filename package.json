@@ -1,6 +1,6 @@
 {
   "name": "@kojamori/mdx-builder",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "A package to provide some tools on procedural generation of MDX documents.",
   "keywords": [
     "mdx",
@@ -28,5 +28,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/kojamori/mdx-builder.git"
+  },
+  "dependencies": {
+    "yaml": "^2.8.2"
   }
 }

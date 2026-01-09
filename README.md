@@ -34,7 +34,7 @@ console.log(mdxContent);
 
 ## API
 
-For now, please refer to the source code in `src/utils.ts` for available utility functions and their usage.
+For detailed API documentation, please refer to the [API Documentation](API.md).
 
 ## Contributing
 
