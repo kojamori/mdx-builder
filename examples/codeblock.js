@@ -1,6 +1,4 @@
-import MDXBuilder from "../src/index.js";
-
-const { utils, mdxBuilder } = MDXBuilder;
+import { utils, mdxBuilder } from "../dist/index.js";
 
 const builder = new mdxBuilder();
 
