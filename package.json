@@ -12,7 +12,7 @@
     "docs",
     "documentation"
   ],
-  "license": "GPL-3.0",
+  "license": "MIT",
   "author": "Koja Mori",
   "type": "module",
   "main": "dist/index.js",
