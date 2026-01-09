@@ -7,7 +7,7 @@ The `Builder` class provides a fluent interface for programmatically constructin
 ### Usage Example
 
 ```typescript
-import { mdxBuilder } from "mdx-builder";
+import { mdxBuilder } from "@kojamori/mdx-builder";
 const builder = new mdxBuilder();
 builder.addHeading("Title", 1).addText("Some text");
 const mdx = builder.build();
