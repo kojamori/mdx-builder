@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.0.1] - 2026-01-09
+
+### Fixed
+
+- Fixed README.md example code to correctly import from the `mdx-builder` package using the new barrel export pattern.
+
 ## [4.0.0] - 2026-01-09
 
 ### Added
