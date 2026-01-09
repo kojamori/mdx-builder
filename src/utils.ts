@@ -9,9 +9,38 @@ const makeFrontMatter = (values: Record<string, string>) => {
   return frontMatter;
 };
 
-const makeTable = (headers: string[], rows: string[][]) => {
+const makeTableHTML = (headers: string[], rows: string[][]) => {
   if (headers.length === 0 || rows.length === 0) {
     return "";
+  }
+
+  let table = "<table>\n<thead>\n<tr>\n";
+  headers.forEach((header) => {
+    table += `  <th>${header}</th>\n`;
+  });
+  table += "</tr>\n</thead>\n<tbody>\n";
+  rows.forEach((row) => {
+    table += "<tr>\n";
+    row.forEach((cell) => {
+      table += `  <td>${cell}</td>\n`;
+    });
+    table += "</tr>\n";
+  });
+  table += "</tbody>\n</table>\n";
+  return table;
+};
+
+const makeTable = (
+  headers: string[],
+  rows: string[][],
+  html: boolean = false
+) => {
+  if (headers.length === 0 || rows.length === 0) {
+    return "";
+  }
+
+  if (html) {
+    return makeTableHTML(headers, rows);
   }
 
   // Helper to escape the pipe character so it doesn't break Markdown syntax
@@ -39,73 +68,37 @@ const makeTable = (headers: string[], rows: string[][]) => {
   return table;
 };
 
-const makeInlineCode = (text: string) => {
-  return `\`${text}\``;
+const makeInlineCode = (text: string, html: boolean = false) => {
+  return html ? `<code>${text}</code>` : `\`${text}\``;
 };
 
-const makeCodeBlock = (code: string, language: string = "", title?: string) => {
-  return title
-    ? `\`\`\`${language} title="${title}"\n${code}\n\`\`\`\n`
-    : `\`\`\`${language}\n${code}\n\`\`\`\n`;
-};
-
-const makeHeading = (text: string, level: number, content: string = "") => {
-  return `${"#".repeat(level)} ${text}` + (content ? `\n\n${content}\n` : "");
-};
-
-const newline = () => {
-  return "\n";
-};
-
-const bold = (text: string) => {
-  return `**${text}**`;
-};
-
-const boldColon = (text: string, content: string = "") => {
-  return `**${text}:**` + (content ? ` ${content}` : "");
-};
-
-const italics = (text: string) => {
-  return `*${text}*`;
-};
-
-const underline = (text: string) => {
-  return `<u>${text}</u>`;
-};
-
-const strikethrough = (text: string) => {
-  return `~~${text}~~`;
-};
-
-const link = (text: string, url: string) => {
-  return `[${text}](${url})`;
-};
-
-const image = (altText: string, url: string) => {
-  return `![${altText}](${url})`;
-};
-
-const admonition = (
-  type: string & types.AdmonitionType,
-  title: string = "",
-  content: string
+const makeCodeBlock = (
+  code: string,
+  language: string = "",
+  title?: string,
+  html: boolean = false
 ) => {
-  if (title) {
-    return `::: ${type}[${title}]\n${content}\n:::\n`;
-  } else {
-    return `::: ${type}\n${content}\n:::`;
-  }
+  return html
+    ? `<pre><code class="language-${language}" title="${title}">${code}</code></pre>`
+    : `\`\`\`${language} title="${title}"\n${code}\n\`\`\`\n`;
 };
 
-const horizontalRule = () => {
-  return `---`;
+const makeHeading = (
+  text: string,
+  level: number,
+  content: string = "",
+  html: boolean = false
+) => {
+  return html
+    ? `<h${level}>${text}</h${level}>` + (content ? `\n\n${content}\n` : "")
+    : `${"#".repeat(level)} ${text}` + (content ? `\n\n${content}\n` : "");
 };
 
-const component = (
+const makeComponent = (
   name: string,
   props: Record<string, any> = {},
-  inline: boolean = false,
-  selfClosing: boolean = true,
+  inline: boolean = false, // if true, no newlines around contents
+  selfClosing: boolean = true, // if true, no contents, and uses self-closing tag
   contents: string = ""
 ) => {
   const propsString = Object.entries(props)
@@ -132,7 +125,24 @@ const component = (
   }
 };
 
-const list = (items: any[], ordered: boolean = false) => {
+const makeListHTML = (items: any[], ordered: boolean = false) => {
+  let listString = ordered ? "<ol>\n" : "<ul>\n";
+  items.forEach((item) => {
+    listString += `  <li>${item}</li>\n`;
+  });
+  listString += ordered ? "</ol>\n" : "</ul>\n";
+  return listString;
+};
+
+const makeList = (
+  items: any[],
+  ordered: boolean = false,
+  html: boolean = false
+) => {
+  if (html) {
+    return makeListHTML(items, ordered);
+  }
+
   let listString = "";
 
   // can be nested lists, so we need a recursive function
@@ -151,6 +161,62 @@ const list = (items: any[], ordered: boolean = false) => {
   return listString;
 };
 
+const makeLink = (text: string, url: string, html: boolean = false) => {
+  return html ? `<a href="${url}">${text}</a>` : `[${text}](${url})`;
+};
+
+const makeImage = (altText: string, url: string, html: boolean = false) => {
+  return html
+    ? `<img src="${url}" alt="${altText}" />`
+    : `![${altText}](${url})`;
+};
+
+const makeHorizontalRule = (html: boolean = false) => {
+  return html ? `<hr/>` : `---`;
+};
+
+const newline = (html: boolean = false) => {
+  return html ? `<br/>` : `\n`;
+};
+
+const bold = (text: string, html: boolean = false) => {
+  return html ? `<strong>${text}</strong>` : `**${text}**`;
+};
+
+const boldColon = (
+  text: string,
+  content: string = "",
+  html: boolean = false
+) => {
+  return html
+    ? `<strong>${text}:</strong>` + (content ? ` ${content}` : "")
+    : `**${text}:**` + (content ? ` ${content}` : "");
+};
+
+const italics = (text: string, html: boolean = false) => {
+  return html ? `<i>${text}</i>` : `*${text}*`;
+};
+
+const underline = (text: string, html: boolean = false) => {
+  return html ? `<u>${text}</u>` : `_${text}_`;
+};
+
+const strikethrough = (text: string, html: boolean = false) => {
+  return html ? `<del>${text}</del>` : `~~${text}~~`;
+};
+
+const admonition = (
+  type: string & types.AdmonitionType,
+  title: string = "",
+  content: string
+) => {
+  if (title) {
+    return `::: ${type}[${title}]\n${content}\n:::\n`;
+  } else {
+    return `::: ${type}\n${content}\n:::`;
+  }
+};
+
 export default {
   makeFrontMatter,
   makeTable,
@@ -163,10 +229,10 @@ export default {
   italics,
   underline,
   strikethrough,
-  link,
-  image,
+  makeLink,
+  makeImage,
   admonition,
-  horizontalRule,
-  component,
-  list,
+  makeHorizontalRule,
+  makeComponent,
+  makeList,
 };
