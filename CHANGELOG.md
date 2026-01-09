@@ -1,6 +1,13 @@
 # Changelog
 
-# [4.0.5] - 2026-01-09
+## [4.0.6] - 2026-01-09
+
+### Fixed
+
+- Fixed type definition for `makeFrontMatter` utility function to accept `Record<string, any>` instead of `Record<string, string>` to accommodate various data types in frontmatter values.
+- Fixed API.md documentation to include package scope in import statements for examples.
+
+## [4.0.5] - 2026-01-09
 
 ### Documentation
 

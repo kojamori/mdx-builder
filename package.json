@@ -1,6 +1,6 @@
 {
   "name": "@kojamori/mdx-builder",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "A package to provide some tools on procedural generation of MDX documents.",
   "keywords": [
     "mdx",
