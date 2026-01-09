@@ -1,4 +1,4 @@
-import MDXBuilder from "../src/index.js";
+import MDXBuilder from "../../src/index.js";
 
 const { utils, mdxBuilder } = MDXBuilder;
 
