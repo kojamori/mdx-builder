@@ -17,9 +17,8 @@ npm install mdx-builder
 ## Usage
 
 ```typescript
-import MDXBuilder from "@kojamori/mdx-builder";
+import { mdxBuilder, utils } from "@kojamori/mdx-builder";
 
-const { mdxBuilder, utils } = MDXBuilder;
 const builder = new mdxBuilder();
 
 builder
@@ -47,4 +46,4 @@ Please see [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## License
 
-This project is licensed under the GPL-3.0 License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

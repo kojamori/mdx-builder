@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.0.3] - 2026-01-09
+
+### Fixed
+
+- Fixed import statement in README.md example code to correctly import from the `mdx-builder` package using the new barrel export pattern.
+
+### Licenses
+
+- Changed license to MIT License for better compatibility and permissiveness.
+
 ## [4.0.2] - 2026-01-09
 
 ### Documentation
