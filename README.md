@@ -17,9 +17,7 @@ npm install mdx-builder
 ## Usage
 
 ```typescript
-import MDXBuilder from "mdx-builder";
-
-const { utils, mdxBuilder } = MDXBuilder;
+import { utils, mdxBuilder } from "mdx-builder";
 
 const builder = new mdxBuilder();
 
