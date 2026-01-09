@@ -1,7 +1,7 @@
 import * as types from "./types.js";
 import utils from "./utils.js";
 
-const { makeHeading, makeFrontMatter, component } = utils;
+const { makeHeading, makeFrontMatter } = utils;
 
 class Builder implements types.IMarkdownBuilder {
   private elements: string[] = [];
@@ -9,9 +9,9 @@ class Builder implements types.IMarkdownBuilder {
 
   public frontmatter: Record<string, string> = {};
 
-  // Import external components
-  import(componentName: string, from: string) {
-    this.imports.add(`import ${componentName} from '${from}';`);
+  // Import external files/components
+  import(objectName: string, from: string) {
+    this.imports.add(`import ${objectName} from '${from}';`);
     return this;
   }
 
@@ -34,20 +34,6 @@ class Builder implements types.IMarkdownBuilder {
     return this;
   }
 
-  // New: Add an MDX Component
-  addComponent(
-    name: string,
-    props: Record<string, any> = {},
-    inline: boolean = false,
-    selfClosing: boolean = true,
-    contents: string = ""
-  ) {
-    this.elements.push(
-      component(name, props, inline, selfClosing, contents) + "\n"
-    );
-    return this;
-  }
-
   build() {
     let doc = "";
 
@@ -64,7 +50,11 @@ class Builder implements types.IMarkdownBuilder {
     // 3. Add Content
     doc += this.elements.join("\n");
 
-    return doc.trim() + "\n";
+    return doc.trim();
+  }
+
+  constructor(frontmatter: Record<string, any> = {}) {
+    this.frontmatter = frontmatter;
   }
 }
 
